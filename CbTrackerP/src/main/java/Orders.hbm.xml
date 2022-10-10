@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">  
+  
+ <hibernate-mapping>  
+  <class name="com.cb.tracker.models.Orders" table="OpenOrderHistory">  
+    <id name="id"> <generator class="assigned"> </generator></id>
+    <property name="order_id"></property>  
+    <property name="analyst_id"></property>
+    <property name="asset_symbol"></property>  
+    <property name="market_symbol"></property>
+    <property name="commission_symbol"></property>  
+    <property name="last_order_fill"></property>  
+    
+    <property name="total_order_fill"></property>  
+    <property name="order_status"></property>
+    <property name="order_type"></property>  
+    <property name="quantity"></property>
+    <property name="price"></property>  
+    <property name="order_time"></property>
+    
+    <property name="lastupdatetime"></property>
+    <property name="feesAmount"></property>  
+    <property name="last_executed_price "></property>             
+  </class>  
+            
+ </hibernate-mapping>  
