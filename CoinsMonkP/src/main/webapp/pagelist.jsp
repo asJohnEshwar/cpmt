@@ -7,7 +7,7 @@
 <body style="height: 219px; ">
 
 	<a href="../api.jsp">Link Binance API</a></br>
-	<a href="/CBPortfolioTrackerP/servlet/snapshot">Accounst Snapshot</a></br>
+	<a href="/CoinsMonkP/servlet/snapshot">Accounst Snapshot</a></br>
 <!-- 	<a id="orders">Order History Page</a> -->
 <!-- 	<script type="text/javascript"> -->
 // 	document.getElementById("orders").onclick = function () {
