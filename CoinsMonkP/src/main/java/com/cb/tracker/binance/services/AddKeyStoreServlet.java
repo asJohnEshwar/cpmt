@@ -18,9 +18,8 @@ public class AddKeyStoreServlet extends HttpServlet {
 		keystore.setSecretKey(request.getParameter("skey"));
 		System.out.println("ApIKEY---->"+request.getParameter("akey"));
 		try {
-			new LoadAllData(keystore);
-			
 			new UserManagement().registerBinanceAccountDetails(keystore);
+			new LoadAllData(keystore);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Add New Analyst Error");
