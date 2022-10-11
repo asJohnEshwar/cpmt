@@ -8,6 +8,8 @@ public class StaticConfig {
 	public static String ALL_ORDERS = "https://api.binance.com/api/v3/allOrders?";
 	public static String ALL_TRADES = "https://api.binance.com/api/v3/myTrades?";
 	public static String QUERY_ORDER = "https://api.binance.com/api/v3/order?";
+	public static String DEPOSIT_HISTORY = "https://api.binance.com/sapi/v1/capital/deposit/hisrec?";
+	public static String WITHDRAWAL_HISTORY = "https://api.binance.com/sapi/v1/capital/withdraw/history?";
 	public static String [] MARKETS = new String[] {"BTC","ETH","USDT"};
 	public static String getUSER_ASSET_URL() {
 		return USER_ASSET_URL;

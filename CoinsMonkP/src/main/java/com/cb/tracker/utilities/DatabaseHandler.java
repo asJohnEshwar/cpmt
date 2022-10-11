@@ -18,6 +18,7 @@ import org.json.JSONArray;
 
 import com.cb.tracker.models.AccountSnapshot;
 import com.cb.tracker.models.Orders;
+import com.cb.tracker.models.Transactions;
 
 public class DatabaseHandler  {
 	ResultSet resultSet = null;
@@ -104,6 +105,16 @@ public class DatabaseHandler  {
 		System.out.println(queryString);
 		System.out.println("Updating Query "+query.executeUpdate());
 		transaction.commit();
+	}
+	
+	public static void addDebitsAndCredits(Transactions transactions) {
+		SessionFactory sessionFactory = SessionUtility.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		System.out.println("Adding Debits and Credits Record");
+		session.save(transactions);
+		if (transaction.getStatus().equals(TransactionStatus.ACTIVE))
+		    transaction.commit();
 	}
 	public DatabaseHandler() {
 		
