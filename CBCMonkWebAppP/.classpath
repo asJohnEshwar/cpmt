@@ -30,7 +30,16 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Eshwar/Backups/jars/json-20140107.jar"/>
-	<classpathentry kind="lib" path="C:/Eshwar/Backups/jars/jar_files/Java-WebSocket-1.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Eshwar/Backups/jars/jar_files/Java-WebSocket-1.5.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Eshwar/Backups/jars/jar_files/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="C:/Eshwar/Backups/jars/json-20140107.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -2,8 +2,10 @@ package com.cb.tracker.binance.tools;
 
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -61,7 +63,7 @@ public class LoadListenKeys {
 
 	}
 	
-	public  String reloadListenKey(String analystId) throws Exception {
+	public  String reloadListenKey(String analystId) throws ClassNotFoundException, SQLException, IOException     {
 		String queryStr = "SELECT ANALYST_ID,API_KEY FROM cpmtest.KEYSTORE where analyst_id = '"+analystId+"';";
 		ResultSet resultSet = new DatabaseHandler().executeQuery(queryStr);
 		if(resultSet.next()) {
@@ -89,7 +91,7 @@ public class LoadListenKeys {
 		fetchAllListenKeys();
 	}
 	
-	public LoadListenKeys(String analystId) throws Exception {
+	public LoadListenKeys(String analystId) throws Throwable {
 		reloadListenKey(analystId);
 	}
 }

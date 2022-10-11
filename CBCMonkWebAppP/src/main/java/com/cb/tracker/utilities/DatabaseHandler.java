@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import com.cb.tracker.models.Orders;
 public class DatabaseHandler  {
 	ResultSet resultSet = null;
 	Boolean booleanValue = null;
-	public ResultSet executeQuery(String queryStr) throws Exception {
+	public ResultSet executeQuery(String queryStr) throws ClassNotFoundException, SQLException  {
 		Class.forName("com.mysql.jdbc.Driver"); 
 		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cpmtest","root","xyz1xyz2xyz!");
 		Statement statement  = connection.createStatement();
