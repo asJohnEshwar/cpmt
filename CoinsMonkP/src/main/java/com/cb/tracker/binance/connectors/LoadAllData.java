@@ -16,6 +16,7 @@ import com.cb.tracker.models.AccountSnapshot;
 import com.cb.tracker.models.Keystore;
 import com.cb.tracker.models.Orders;
 import com.cb.tracker.models.TradeHistory;
+import com.cb.tracker.models.Transactions;
 import com.cb.tracker.utilities.DatabaseHandler;
 import com.cb.tracker.utilities.SessionUtility;
 import com.cb.tracker.utilities.StaticConfig;
@@ -42,7 +43,9 @@ public class LoadAllData {
 		analystId = keystore.getAnalystId();
 		apiKey = keystore.getApiKey();
 		secretKey = keystore.getSecretKey();
-		getAssetData();
+		getWithdrawalHistory();
+//		getDepositHistory();
+//		getAssetData();
 //		loadOrdersAndTrades();
 
 	}
@@ -239,6 +242,75 @@ public class LoadAllData {
 			//System.out.println(query.executeUpdate());
 //			transaction.commit();
 			DatabaseHandler.update(queryString);
+		}
+	}
+	
+	public static void getDepositHistory() throws Exception {
+		queryString = "timestamp="
+				+ new com.cb.tracker.binance.connectors.BinanceRestClient().getServerTime();
+		queryString = queryString + "&signature=" + BinanceUtilities.encode(secretKey, queryString);
+		HttpURLConnection connection = UtilityClass.getHttpConnection(queryString, StaticConfig.DEPOSIT_HISTORY);
+		connection.setRequestMethod("GET");
+		System.out.println(queryString);
+		connection.setRequestProperty("X-MBX-APIKEY", apiKey);
+		JSONArray jsonArray = new JSONArray(UtilityClass.getHttpResponse(connection));
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+			Transactions transactions = new Transactions();
+			transactions.setAnalystId(analystId);
+			transactions.setAssetSymbol(jsonObject.getString("coin"));
+			transactions.setType("DEPOSIT");
+			transactions.setVolume(jsonObject.getDouble("amount"));
+			transactions.setEventTime(jsonObject.getString("insertTime"));
+			
+		}
+	}
+	
+	public static void getWithdrawalHistory() throws Exception {
+		queryString = "startTime=1643395245000&endTime=1646073645000&timestamp="
+				+ new com.cb.tracker.binance.connectors.BinanceRestClient().getServerTime();
+		queryString = queryString + "&signature=" + BinanceUtilities.encode(secretKey, queryString);
+		HttpURLConnection connection = UtilityClass.getHttpConnection(queryString, StaticConfig.WITHDRAWAL_HISTORY);
+		connection.setRequestMethod("GET");
+		System.out.println(queryString);
+		connection.setRequestProperty("X-MBX-APIKEY", apiKey);
+		JSONArray jsonArray = new JSONArray(UtilityClass.getHttpResponse(connection));
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+			Transactions transactions = new Transactions();
+			transactions.setAnalystId(analystId);
+			transactions.setAssetSymbol(jsonObject.getString("coin"));
+			transactions.setType("WITHDRAW");
+			transactions.setVolume(jsonObject.getDouble("amount"));
+			transactions.setEventTime(jsonObject.getString("insertTime"));
+			
+		}
+	}
+	public static void getDepositHistory(String coin) throws Exception {
+		queryString = "timestamp="+ new com.cb.tracker.binance.connectors.BinanceRestClient().getServerTime();
+		queryString = queryString + "&signature=" + BinanceUtilities.encode(secretKey, queryString);
+		HttpURLConnection connection = UtilityClass.getHttpConnection(queryString, StaticConfig.DEPOSIT_HISTORY);
+		connection.setRequestMethod("GET");
+		System.out.println(queryString);
+		connection.setRequestProperty("X-MBX-APIKEY", apiKey);
+		JSONArray jsonArray = new JSONArray(UtilityClass.getHttpResponse(connection));
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject orderObject = jsonArray.getJSONObject(i);
+			System.out.println(i+"  ----->"+orderObject);
+		}
+	}
+	
+	public static void getWithdrawalHistory(String coin) throws Exception {
+		queryString = "startTime=1643395245000&timestamp="+ new com.cb.tracker.binance.connectors.BinanceRestClient().getServerTime();
+		queryString = queryString + "&signature=" + BinanceUtilities.encode(secretKey, queryString);
+		HttpURLConnection connection = UtilityClass.getHttpConnection(queryString, StaticConfig.WITHDRAWAL_HISTORY);
+		connection.setRequestMethod("GET");
+		System.out.println(queryString);
+		connection.setRequestProperty("X-MBX-APIKEY", apiKey);
+		JSONArray jsonArray = new JSONArray(UtilityClass.getHttpResponse(connection));
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject orderObject = jsonArray.getJSONObject(i);
+			System.out.println(i+"  ----->"+orderObject);
 		}
 	}
 }
