@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"  
+ "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">  
+<hibernate-configuration>
+	<session-factory>
+<!-- 		<property name="hbm2ddl.auto">update</property> -->
+<!-- 		<property name="hbm2ddl.auto">create</property> -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.driver.class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/cpmtest?serverTimezone=UTC</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">xyz1xyz2xyz!</property>
+		
+		
+<!-- 		<property name="hibernate.current_session_context_class">thread</property> -->
+<!--         <property name="hibernate.show_sql">true</property> -->
+		<property name="show_sql">true</property>	
+		<mapping class="com.cb.tracker.models.Orders"/>
+		<mapping class="com.cb.tracker.models.AccountSnapshot"/>
+		<mapping class="com.cb.tracker.models.Keystore"/>
+		<mapping class="com.cb.tracker.models.Users"/>
+		<mapping class="com.cb.tracker.models.TradeHistory"/>
+	</session-factory>
+</hibernate-configuration>	
+	
+		
