@@ -66,6 +66,10 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Snapshot</servlet-name>
-		<url-pattern>/servlet/snapshot</url-pattern>
+		<url-pattern>/CoinsMonkP/servlet/snapshot</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Snapshot</servlet-name>
+		<url-pattern>/CoinsMonkP/servlet/snapshot</url-pattern>
 	</servlet-mapping>
 </web-app>
